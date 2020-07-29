@@ -2,8 +2,6 @@ package org.aim.movie.actor;
 
 import java.util.Optional;
 
-import com.jayway.jsonpath.Option;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
