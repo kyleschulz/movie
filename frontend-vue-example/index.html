@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <style>
+            .fade-enter-active,
+            .fade-leave-active {
+                transition: opacity 0.5s;
+            }
+            .fade-enter,
+            .fade-leave-to {
+                opacity: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Vue Examples</h1>
+
+        <div id="app">
+            {{ message }}
+
+            <div v-bind:title="message">
+                Hover your mouse over me for a few seconds!
+            </div>
+
+            <div v-if="seen">Now you see me</div>
+            <div v-else="seen">Do you see me now?</div>
+
+            <div>
+                <button v-on:click="show = !show">
+                    Toggle
+                </button>
+                <transition name="fade">
+                    <p v-if="show">Hello again!</p>
+                </transition>
+            </div>
+
+            <div>
+                <ol>
+                    <li v-for="todo in todos">
+                        {{ todo.text }}
+                    </li>
+                </ol>
+            </div>
+
+            <div>
+                <p>{{ message2 }}</p>
+                <input v-model="message2" />
+            </div>
+
+            <div>
+                <p>{{ message3 }}</p>
+                <button v-on:click="reverseMessage">Reverse Button</button>
+            </div>
+
+            <div>
+                <button v-on:click="counter += 1">Add 1</button>
+                <p>The button above has been clicked {{ counter }} times.</p>
+            </div>
+
+            <div>
+                <button v-on:click="greet">Greet</button>
+            </div>
+
+            <div>
+                <button v-on:click="say('hi')">Say hi</button>
+                <button v-on:click="say('what')">Say what</button>
+            </div>
+
+        </div>
+
+        <script src="https://unpkg.com/vue"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
