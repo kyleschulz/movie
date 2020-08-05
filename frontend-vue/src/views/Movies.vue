@@ -21,7 +21,7 @@
                 <tbody>
                     <tr v-for="movie in movies" :key="movie.id">
                         <td>{{ movie.id }}</td>
-                        <td>{{ movie.movieTitle }}</td>
+                        <td><a @click="movieDetail(movie.id)">{{ movie.movieTitle }}</a></td>
                         <td>{{ movie.movieLength }}</td>
                         <td>{{ movie.releaseDate }}</td>
                     </tr>
@@ -38,6 +38,11 @@ export default {
     data: () => ({
         movies: []
     }),
+    methods: {
+        movieDetail(movieId) {
+            this.$router.push('movie/' + movieId);
+        }
+    },
     async mounted() {
         const { data } = await this.$http.get('http://localhost:8080/api/movies');
         this.movies = data;
