@@ -22,6 +22,11 @@ Vue.use(VueRouter)
     // this generates a separate chunk (actors.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "actors" */ '../views/Actors.vue')
+  },
+  {
+      path: '/movies',
+      name: 'Movies',
+      component: () => import('../views/Movies.vue')
   }
 ]
 
