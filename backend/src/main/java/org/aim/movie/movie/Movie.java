@@ -128,4 +128,11 @@ public class Movie {
         this.trailerUrl = trailerUrl;
     }
 
+    @Override
+    public String toString() {
+        return "Movie [actors=" + actors + ", director=" + director + ", genre=" + genre + ", id=" + id
+                + ", movieLength=" + movieLength + ", movieTitle=" + movieTitle + ", rating=" + rating
+                + ", releaseDate=" + releaseDate + ", trailerUrl=" + trailerUrl + "]";
+    }
+
 }

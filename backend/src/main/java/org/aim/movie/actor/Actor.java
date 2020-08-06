@@ -59,4 +59,10 @@ public class Actor {
         this.dateOfBirth = dateOfBirth;
     }
 
+    @Override
+    public String toString() {
+        return "Actor [dateOfBirth=" + dateOfBirth + ", firstName=" + firstName + ", id=" + id + ", lastName="
+                + lastName + "]";
+    }
+
 }

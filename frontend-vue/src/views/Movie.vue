@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="movie">
 
         <span>{{ movie.movieTitle }}</span>
 
@@ -18,13 +18,20 @@
 </template>
 
 <script>
+import {MovieApi} from '../api/MovieApi';
+const movieApi = new MovieApi();
+
 export default {
     data: () => ({
         movie: null
     }),
     async mounted() {
-        const { data } = await this.$http.get('http://localhost:8080/api/movies/' + this.$route.params.id);
-        this.movie = data;
+        let movie = await movieApi.getMovie(this.$route.params.id);
+        if (movie != null) {
+            this.movie = movie;
+            this.year = this.moment(this.movie.releaseDate).format('YYYY');
+            this.releaseDate = this.moment(this.movie.releaseDate).format('DD MMMM YYYY');
+        }
     }
 }
 </script>

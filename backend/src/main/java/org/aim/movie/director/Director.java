@@ -56,4 +56,10 @@ public class Director {
         this.dateOfBirth = dateOfBirth;
     }
 
+    @Override
+    public String toString() {
+        return "Director [dateOfBirth=" + dateOfBirth + ", firstName=" + firstName + ", id=" + id + ", lastName="
+                + lastName + "]";
+    }
+
 }

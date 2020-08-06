@@ -44,4 +44,9 @@ public class Rating {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return "Rating [description=" + description + ", id=" + id + ", rating=" + rating + "]";
+    }
+
 }
