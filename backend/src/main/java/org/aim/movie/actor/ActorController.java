@@ -40,14 +40,14 @@ public class ActorController {
     @PutMapping(path = "/{id}")
     public @ResponseBody String updateActor(@PathVariable(value = "id") Integer id, @RequestBody Actor actorDetails) {
 
-        Optional<Actor> optionalActor = actorRepository.findById(id);
-        Actor actor = optionalActor.get();
+        // Optional<Actor> optionalActor = actorRepository.findById(id);
+        // Actor actor = optionalActor.get();
 
-        actor.setFirstName(actorDetails.getFirstName());
-        actor.setLastName(actorDetails.getLastName());
-        actor.setDateOfBirth(actorDetails.getDateOfBirth());
+        // actor.setFirstName(actorDetails.getFirstName());
+        // actor.setLastName(actorDetails.getLastName());
+        // actor.setDateOfBirth(actorDetails.getDateOfBirth());
 
-        actorRepository.save(actor);
+        actorRepository.save(actorDetails);
         return "Updated";
     }
 
