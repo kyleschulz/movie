@@ -24,7 +24,8 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "actors" */ '../views/Actors.vue')
   },
   { path: '/movies', name: 'Movies', component: () => import('../views/Movies.vue') },
-  { path: '/movie/:id', name: 'Movie', component: () => import('../views/Movie.vue')}
+  { path: '/movie/add', name: 'AddMovie', component: () => import('../views/AddMovie.vue')},
+  { path: '/movie/:id', name: 'Movie', component: () => import('../views/MovieDetail.vue')},
 ]
 
 const router = new VueRouter({
