@@ -19,10 +19,11 @@
 	<description>Movie Project Using Spring Boot</description>
 
 	<properties>
-		<java.version>11</java.version>
-	</properties>
+        <main.basedir>${project.basedir}</main.basedir>
+    </properties>
 
     <modules>
+        <module>frontend-vue</module>
         <module>backend</module>
     </modules>
 

@@ -44,11 +44,11 @@ export default {
         }
     },
     async mounted() {
-        const { data } = await this.$http.get('http://localhost:8080/api/directors');
+        const { data } = await this.$http.get('/api/directors');
         console.log('getDirectors() data', data)
         this.directors = data;
 
-        // const { data } = await this.$http.get('http://localhost:8080/api/genres');
+        // const { data } = await this.$http.get('/api/genres');
         // console.log('getGenres() data', data)
         // this.directors = data;
 

@@ -44,7 +44,7 @@ export default {
         }
     },
     async mounted() {
-        const { data } = await this.$http.get('http://localhost:8080/api/movies');
+        const { data } = await this.$http.get('/api/movies');
         this.movies = data;
     }
 }

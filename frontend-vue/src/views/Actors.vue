@@ -38,7 +38,7 @@ export default {
     }),
     async mounted() {
         console.log('actors mounted being');
-        const { data } = await this.$http.get('http://localhost:8080/api/actors');
+        const { data } = await this.$http.get('/api/actors');
         console.log('actors mounted data', data);
         this.actors = data;
     }

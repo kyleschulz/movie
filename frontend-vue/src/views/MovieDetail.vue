@@ -23,7 +23,7 @@ export default {
         movie: null
     }),
     async mounted() {
-        const { data } = await this.$http.get('http://localhost:8080/api/movies/' + this.$route.params.id);
+        const { data } = await this.$http.get('/api/movies/' + this.$route.params.id);
         this.movie = data;
     }
 }

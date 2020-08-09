@@ -50,7 +50,7 @@ export default {
             this.$router.push({path: '/actors'});
         },
         async save() {
-            const response = await this.$http.post('http://localhost:8080/api/actors/', this.actor)
+            const response = await this.$http.post('/api/actors/', this.actor)
             console.log(response);
             if (response.status === 200) {
                 this.$router.push({path: '/actors'});

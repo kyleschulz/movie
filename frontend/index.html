@@ -21,7 +21,7 @@
         <script>
             function getAllActors() {
 
-                axios.get('http://localhost:8080/api/actors')
+                axios.get('/api/actors')
                     .then(
                         function (response) {
                             console.log('getAllActors() response=', response);
