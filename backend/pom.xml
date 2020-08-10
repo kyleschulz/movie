@@ -57,12 +57,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Secure backend API -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-
+    	<!-- Secure backend API -->
         <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
