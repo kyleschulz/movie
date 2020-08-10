@@ -29,7 +29,8 @@ Vue.use(VueRouter)
 ]
 
 const router = new VueRouter({
-  routes
+    mode: 'history', // uris without hashes #, see https://router.vuejs.org/guide/essentials/history-mode.html#html5-history-mode
+    routes
 })
 
 export default router
