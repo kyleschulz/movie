@@ -4,24 +4,85 @@
         <h1>Add Movie</h1>
 
 
-        <input class="input" type="text" placeholder="Movie Title" />
+        <div class="field">
+            <label class="label" for="movieTitle">Movie Title</label>
+            <div class="control">
+                <input id="movieTitle" class="input" type="text" placeholder="Movie Title" />
+            </div>
+        </div>
 
-        <input class="input" type="number" placeholder="Movie Length" />
+        <div class="field">
+            <label class="label" for="movieLength">Movie Length</label>
+            <div class="control">
+                <input id="movieLength" class="input" type="number" placeholder="Movie Length" />
+            </div>
+        </div>
 
-        <input class="input" type="date" placeholder="Release Date" />
+        <div class="field">
+            <label class="label" for="movieTitle">Release Date</label>
+            <div class="control">
+                <input id="releaseDate" class="input" type="date" />
+            </div>
+        </div>
 
-        <select v-model="movie.director.id">
-            <option v-for="director in directors" :value="director.id" :key="director.id">
-                {{ director.firstName }} {{ director.lastName }}
-            </option>
-        </select>
-       
-        <!-- <select v-model="movie.genre.id">
-            <option v-for="genre in genre" :value="director.id" :key="genre.id">
-                {{ genre.firstName }} {{ genre.lastName }}
-            </option>
-        </select> -->
+        <div class="field">
+            <label class="label" for="movieTitle">Trailer Url</label>
+            <div class="control">   
+                <input id="trailerUrl" class="input" type="text" placeholder="Trailer Url" />
+            </div>
+        </div>
 
+
+        <div class="field">
+            <label class="label">Director</label>
+            <div class="select">
+                <select v-model="movie.director.id">
+                    <option v-for="director in directors" :value="director.id" :key="director.id">
+                        {{ director.firstName }} {{ director.lastName }}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Genre</label>
+            <div class="select">
+                <select v-model="movie.genre.id">
+                    <option v-for="genre in genres" :value="genre.id" :key="genre.id">
+                        {{ genre.genre }}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Rating</label>
+            <span class="control" v-for="rating in ratings" :key="rating.id">
+                <label :for="rating.id" class="radio">
+                    <input type="radio" :id="rating.id" :value="rating.id" v-model="movie.rating.id" class="radio" />
+                    {{ rating.rating }}
+                </label>
+            </span>
+        </div>
+
+        <div class="field">
+            <label class="label">Actors</label>
+            <div class="control" v-for="actor in actors" :key="actor.id">
+                <label :for="actor.id" class="checkbox">
+                    <input type="checkbox" :id="actor.id" :value="actor.id" v-model="movie.actors" class="checkbox" />
+                    {{ actor.firstName }} {{ actor.lastName }}
+                </label>
+            </div>
+        </div>
+
+        <div class="field is-grouped">
+            <div class="control">
+                <button @click="cancel" class="button">Cancel</button>
+            </div>
+            <div class="control">
+                <button @click="save" class="button is-primary">Save</button>
+            </div>
+        </div>
 
     </div>
 </template>
@@ -30,28 +91,61 @@
 export default {
     data: () => ({
         movie: {
-            director: {}
+            movieTitle: null,
+            movieLength: null,
+            releaseDate: null,
+            trailerUrl: null,
+            director: {},
+            genre: {},
+            rating: {},
+            actors: []
         },
         directors: [],
-        genres: []
+        genres: [],
+        ratings: [],
+        actors: []
     }),
     methods: {
-        save() {
+        async save() {
             // save movie, that movie object (data.movie) will be sent
+            const response = await this.$http.post('http://localhost:8080/api/movies/', this.movie);
+            console.log('AddMovie.save() response=', response);
         },
         cancel() {
-
+            this.$router.push({path: '/movies'});
+        },
+        async getDirectors() {
+            const { data } = await this.$http.get('http://localhost:8080/api/directors');
+            console.log('getDirectors() data', data)
+            return data;
+        },
+        async getGenres() {
+            const { data } = await this.$http.get('http://localhost:8080/api/genres');
+            console.log('getGenres() data', data)
+            return data;
+        },
+        async getRatings() {
+            const { data } = await this.$http.get('http://localhost:8080/api/ratings');
+            console.log('getRatings() data', data);
+            return data;
+        },
+        async getActors() {
+            const { data } = await this.$http.get('http://localhost:8080/api/actors');
+            console.log('getActors() data', data);
+            return data;
         }
     },
     async mounted() {
-        const { data } = await this.$http.get('http://localhost:8080/api/directors');
-        console.log('getDirectors() data', data)
-        this.directors = data;
-
-        // const { data } = await this.$http.get('http://localhost:8080/api/genres');
-        // console.log('getGenres() data', data)
-        // this.directors = data;
-
+        this.directors = await this.getDirectors();
+        this.genres = await this.getGenres();
+        this.ratings = await this.getRatings();
+        this.actors = await this.getActors();
     }
 }
 </script>
+
+<style scoped>
+    label.radio {
+        margin-right: 1rem;
+    }
+</style>
