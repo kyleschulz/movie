@@ -1,8 +1,7 @@
 <template>
     <div>
 
-        <h1>Add Movie</h1>
-
+        <h1 class="title">Add Movie</h1>
 
         <div class="field">
             <label class="label" for="movieTitle">Movie Title</label>
@@ -19,14 +18,14 @@
         </div>
 
         <div class="field">
-            <label class="label" for="movieTitle">Release Date</label>
+            <label class="label" for="releaseDate">Release Date</label>
             <div class="control">
                 <input id="releaseDate" class="input" type="date" />
             </div>
         </div>
 
         <div class="field">
-            <label class="label" for="movieTitle">Trailer Url</label>
+            <label class="label" for="trailerUrl">Trailer Url</label>
             <div class="control">   
                 <input id="trailerUrl" class="input" type="text" placeholder="Trailer Url" />
             </div>
@@ -58,8 +57,8 @@
         <div class="field">
             <label class="label">Rating</label>
             <span class="control" v-for="rating in ratings" :key="rating.id">
-                <label :for="rating.id" class="radio">
-                    <input type="radio" :id="rating.id" :value="rating.id" v-model="movie.rating.id" class="radio" />
+                <label :for="'rating-'+rating.id" class="radio">
+                    <input type="radio" :id="'rating-'+rating.id" :value="rating.id" v-model="movie.rating.id" class="radio" />
                     {{ rating.rating }}
                 </label>
             </span>
@@ -68,8 +67,8 @@
         <div class="field">
             <label class="label">Actors</label>
             <div class="control" v-for="actor in actors" :key="actor.id">
-                <label :for="actor.id" class="checkbox">
-                    <input type="checkbox" :id="actor.id" :value="actor.id" v-model="movie.actors" class="checkbox" />
+                <label :for="'actor-'+actor.id" class="checkbox">
+                    <input type="checkbox" :id="'actor-'+actor.id" :value="actor.id" v-model="movie.actors" class="checkbox" />
                     {{ actor.firstName }} {{ actor.lastName }}
                 </label>
             </div>
