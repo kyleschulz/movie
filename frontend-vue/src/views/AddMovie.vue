@@ -6,31 +6,33 @@
         <div class="field">
             <label class="label" for="movieTitle">Movie Title</label>
             <div class="control">
-                <input id="movieTitle" class="input" type="text" placeholder="Movie Title" />
+                <input id="movieTitle" class="input" type="text" v-model="movie.movieTitle"
+                    placeholder="Movie Title" />
             </div>
         </div>
 
         <div class="field">
             <label class="label" for="movieLength">Movie Length</label>
             <div class="control">
-                <input id="movieLength" class="input" type="number" placeholder="Movie Length" />
+                <input id="movieLength" class="input" type="number" v-model="movie.movieLength"
+                    placeholder="Movie Length" />
             </div>
         </div>
 
         <div class="field">
             <label class="label" for="releaseDate">Release Date</label>
             <div class="control">
-                <input id="releaseDate" class="input" type="date" />
+                <input id="releaseDate" class="input" type="date" v-model="movie.releaseDate" />
             </div>
         </div>
 
         <div class="field">
             <label class="label" for="trailerUrl">Trailer Url</label>
             <div class="control">   
-                <input id="trailerUrl" class="input" type="text" placeholder="Trailer Url" />
+                <input id="trailerUrl" class="input" type="text" v-model="movie.trailerUrl"
+                    placeholder="Trailer Url" />
             </div>
         </div>
-
 
         <div class="field">
             <label class="label">Director</label>
@@ -58,7 +60,8 @@
             <label class="label">Rating</label>
             <span class="control" v-for="rating in ratings" :key="rating.id">
                 <label :for="'rating-'+rating.id" class="radio">
-                    <input type="radio" :id="'rating-'+rating.id" :value="rating.id" v-model="movie.rating.id" class="radio" />
+                    <input type="radio" :id="'rating-'+rating.id" :value="rating.id"
+                        v-model="movie.rating.id" class="radio" />
                     {{ rating.rating }}
                 </label>
             </span>
@@ -68,7 +71,8 @@
             <label class="label">Actors</label>
             <div class="control" v-for="actor in actors" :key="actor.id">
                 <label :for="'actor-'+actor.id" class="checkbox">
-                    <input type="checkbox" :id="'actor-'+actor.id" :value="actor.id" v-model="movie.actors" class="checkbox" />
+                    <input type="checkbox" :id="'actor-'+actor.id" :value="actor"
+                        v-model="movie.actors" class="checkbox" />
                     {{ actor.firstName }} {{ actor.lastName }}
                 </label>
             </div>
@@ -107,6 +111,7 @@ export default {
     methods: {
         async save() {
             // save movie, that movie object (data.movie) will be sent
+            console.log('AddMovie.save() movie=', this.movie);
             const response = await this.$http.post('http://localhost:8080/api/movies/', this.movie);
             console.log('AddMovie.save() response=', response);
         },
